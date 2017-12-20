@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="350" pageHeight="300" columnWidth="330" leftMargin="10" rightMargin="10" topMargin="10" bottomMargin="10">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="subtotal" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="bayar" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="kembalian" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="id_transaksi_sewa" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     tmp_transaksi_sewa.`id_transaksi_sewa` AS tmp_transaksi_sewa_id_transaksi_sewa,
+     tmp_transaksi_sewa.`id_peralatan` AS tmp_transaksi_sewa_id_peralatan,
+     tmp_transaksi_sewa.`id_penyewa` AS tmp_transaksi_sewa_id_penyewa,
+     tmp_transaksi_sewa.`tgl_sewa` AS tmp_transaksi_sewa_tgl_sewa,
+     tmp_transaksi_sewa.`bts_sewa` AS tmp_transaksi_sewa_bts_sewa,
+     tmp_transaksi_sewa.`jml_peralatan` AS tmp_transaksi_sewa_jml_peralatan,
+     penyewa.`id_penyewa` AS penyewa_id_penyewa,
+     penyewa.`nm_penyewa` AS penyewa_nm_penyewa,
+     penyewa.`tgl` AS penyewa_tgl,
+     penyewa.`no_ktp` AS penyewa_no_ktp,
+     penyewa.`notlp` AS penyewa_notlp,
+     penyewa.`alamat` AS penyewa_alamat,
+     peralatan.`id_peralatan` AS peralatan_id_peralatan,
+     peralatan.`nm_peralatan` AS peralatan_nm_peralatan,
+     peralatan.`jml` AS peralatan_jml,
+     peralatan.`hrg_beli` AS peralatan_hrg_beli,
+     peralatan.`hrg_sewa` AS peralatan_hrg_sewa,
+     transaksi_sewa.`id_transaksi_sewa` AS transaksi_sewa_id_transaksi_sewa,
+     transaksi_sewa.`id_peralatan` AS transaksi_sewa_id_peralatan,
+     transaksi_sewa.`id_penyewa` AS transaksi_sewa_id_penyewa,
+     transaksi_sewa.`tgl_sewa` AS transaksi_sewa_tgl_sewa,
+     transaksi_sewa.`bts_sewa` AS transaksi_sewa_bts_sewa,
+     detail_transaksi_sewa.`id_transaksi_sewa` AS detail_transaksi_sewa_id_transaksi_sewa,
+     detail_transaksi_sewa.`id_penyewa` AS detail_transaksi_sewa_id_penyewa,
+     detail_transaksi_sewa.`id_peralatan` AS detail_transaksi_sewa_id_peralatan,
+     detail_transaksi_sewa.`tgl_sewa` AS detail_transaksi_sewa_tgl_sewa,
+     detail_transaksi_sewa.`bts_sewa` AS detail_transaksi_sewa_bts_sewa,
+     detail_transaksi_sewa.`jml_peralatan` AS detail_transaksi_sewa_jml_peralatan,
+     detail_transaksi_sewa.`hrg_sewa` AS detail_transaksi_sewa_hrg_sewa,
+     detail_transaksi_sewa.`total_hrg_sewa` AS detail_transaksi_sewa_total_hrg_sewa
+FROM
+     `tmp_transaksi_sewa` tmp_transaksi_sewa INNER JOIN `transaksi_sewa` transaksi_sewa ON tmp_transaksi_sewa.`id_transaksi_sewa` = transaksi_sewa.`id_transaksi_sewa`
+     INNER JOIN `peralatan` peralatan ON tmp_transaksi_sewa.`id_peralatan` = peralatan.`id_peralatan`
+     INNER JOIN `penyewa` penyewa ON tmp_transaksi_sewa.`id_penyewa` = penyewa.`id_penyewa`
+     INNER JOIN `detail_transaksi_sewa` detail_transaksi_sewa ON penyewa.`id_penyewa` = detail_transaksi_sewa.`id_penyewa`
+     AND detail_transaksi_sewa.`id_peralatan` = peralatan.`id_peralatan`
+     AND transaksi_sewa.`id_transaksi_sewa` = detail_transaksi_sewa.`id_transaksi_sewa`
+WHERE
+     transaksi_sewa.id_transaksi_sewa = $P{id_transaksi_sewa}]]>
+	</queryString>
+	<field name="tmp_transaksi_sewa_id_transaksi_sewa" class="java.lang.String"/>
+	<field name="tmp_transaksi_sewa_id_peralatan" class="java.lang.String"/>
+	<field name="tmp_transaksi_sewa_id_penyewa" class="java.lang.Integer"/>
+	<field name="tmp_transaksi_sewa_tgl_sewa" class="java.sql.Date"/>
+	<field name="tmp_transaksi_sewa_bts_sewa" class="java.sql.Date"/>
+	<field name="tmp_transaksi_sewa_jml_peralatan" class="java.lang.Integer"/>
+	<field name="penyewa_id_penyewa" class="java.lang.Integer"/>
+	<field name="penyewa_nm_penyewa" class="java.lang.String"/>
+	<field name="penyewa_tgl" class="java.sql.Date"/>
+	<field name="penyewa_no_ktp" class="java.lang.String"/>
+	<field name="penyewa_notlp" class="java.lang.String"/>
+	<field name="penyewa_alamat" class="java.lang.String"/>
+	<field name="peralatan_id_peralatan" class="java.lang.String"/>
+	<field name="peralatan_nm_peralatan" class="java.lang.String"/>
+	<field name="peralatan_jml" class="java.lang.Integer"/>
+	<field name="peralatan_hrg_beli" class="java.lang.Integer"/>
+	<field name="peralatan_hrg_sewa" class="java.lang.Integer"/>
+	<field name="transaksi_sewa_id_transaksi_sewa" class="java.lang.String"/>
+	<field name="transaksi_sewa_id_peralatan" class="java.lang.String"/>
+	<field name="transaksi_sewa_id_penyewa" class="java.lang.Integer"/>
+	<field name="transaksi_sewa_tgl_sewa" class="java.sql.Date"/>
+	<field name="transaksi_sewa_bts_sewa" class="java.sql.Date"/>
+	<field name="detail_transaksi_sewa_id_transaksi_sewa" class="java.lang.String"/>
+	<field name="detail_transaksi_sewa_id_penyewa" class="java.lang.Integer"/>
+	<field name="detail_transaksi_sewa_id_peralatan" class="java.lang.String"/>
+	<field name="detail_transaksi_sewa_tgl_sewa" class="java.sql.Date"/>
+	<field name="detail_transaksi_sewa_bts_sewa" class="java.sql.Date"/>
+	<field name="detail_transaksi_sewa_jml_peralatan" class="java.lang.Integer"/>
+	<field name="detail_transaksi_sewa_hrg_sewa" class="java.lang.Integer"/>
+	<field name="detail_transaksi_sewa_total_hrg_sewa" class="java.lang.Integer"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="329" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[OWN CAMPING]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="16" width="330" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Arial" size="10" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Jln. Wahid Hastim No. 12 Yogyakarta]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="32" width="330" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="4" width="39" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ID Sewa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="15" width="39" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="27" width="39" height="13"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Tanggal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="4" width="10" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="15" width="10" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="27" width="10" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="49" y="2" width="100" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tmp_transaksi_sewa_id_transaksi_sewa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="14" width="100" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{penyewa_nm_penyewa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="50" y="27" width="100" height="13"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{penyewa_tgl}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<line>
+				<reportElement x="10" y="20" width="319" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.5" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="49" y="1" width="100" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Peralatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="50" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="1" width="61" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Harga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="251" y="1" width="78" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Harga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="0" width="40" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jml]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<textField>
+				<reportElement x="50" y="0" width="100" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{peralatan_nm_peralatan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="50" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tmp_transaksi_sewa_id_peralatan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="251" y="0" width="78" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detail_transaksi_sewa_total_hrg_sewa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="0" width="61" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detail_transaksi_sewa_hrg_sewa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="211" y="0" width="40" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detail_transaksi_sewa_jml_peralatan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="19" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="58" splitType="Stretch">
+			<staticText>
+				<reportElement x="177" y="10" width="52" height="13"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Sub Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="177" y="36" width="52" height="13"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Kembalian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="177" y="23" width="52" height="13"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Bayar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="229" y="10" width="10" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="229" y="23" width="10" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="229" y="36" width="10" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="239" y="10" width="90" height="13"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{subtotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="239" y="23" width="90" height="13"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bayar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="239" y="36" width="90" height="13"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{kembalian}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="177" y="4" width="152" height="1"/>
+			</line>
+			<line>
+				<reportElement x="178" y="53" width="152" height="1"/>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
