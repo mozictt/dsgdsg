@@ -32,6 +32,7 @@ public class frmUtama extends javax.swing.JFrame {
     /**
      * Creates new form MU
      */
+    //jkui
    
     public int kondisiLogin;
     int Login;
